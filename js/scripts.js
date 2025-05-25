@@ -174,3 +174,42 @@ document.addEventListener("DOMContentLoaded", function () {
     observerStats.observe(statsSection);
   }
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const header = document.querySelector("header");
+  const sections = document.querySelectorAll("section.slide");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      let isFirstVisible = false;
+
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.target.id === "accueil") {
+          isFirstVisible = true;
+        }
+      });
+
+      if (isFirstVisible) {
+        header.classList.remove("affix");
+      } else {
+        header.classList.add("affix");
+      }
+    },
+    {
+      threshold: 0.5,
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+});
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const header = document.getElementById("main-header");
+
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 50) {
+        header.classList.add("affix");
+      } else {
+        header.classList.remove("affix");
+      }
+    });
+  });
