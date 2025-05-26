@@ -382,3 +382,68 @@ section.slide {
 .slide3 { background: linear-gradient(to bottom, #33cc99, #66ffcc); }
 .slide4 { background: linear-gradient(to bottom, #9933ff, #cc66ff); }
 .slide5 { background: linear-gradient(to bottom, #ff9966, #ffcc66); }
+/* Masquer le bouton burger par défaut (desktop) */
+.burger {
+  display: none; /* ← important pour l'ordi */
+  position: fixed;
+  top: 1.2rem;
+  right: 1rem;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.burger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+}
+
+/* Animation burger */
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(7px);
+}
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-7px);
+}
+
+/* Menu mobile uniquement */
+@media screen and (max-width: 660px) {
+  .burger {
+    display: flex;
+  }
+
+  nav#navbar {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: black;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+  }
+
+  nav#navbar.show {
+    display: flex;
+  }
+
+  nav#navbar ul {
+    flex-direction: column;
+  }
+
+  nav#navbar li {
+    margin: 10px 0;
+  }
+
+  /* Forcer le header noir sur mobile */
+  #main-header {
+    background-color: black !important;
+  }
+}

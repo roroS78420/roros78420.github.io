@@ -213,3 +213,21 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+document.addEventListener('DOMContentLoaded', () => {
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('navbar');
+
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    nav.classList.toggle('show');
+  });
+
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('main-header');
+    if (window.scrollY > 10) {
+      header.classList.add('affix');
+    } else {
+      header.classList.remove('affix');
+    }
+  });
+});

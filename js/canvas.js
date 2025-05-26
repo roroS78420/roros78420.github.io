@@ -1,3 +1,20 @@
+let animationFrameId; // pour pouvoir l'annuler plus tard
+
+function animate(){
+  animationFrameId = requestAnimationFrame(animate); // stocke l'ID
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  c.fillStyle = "black";
+  c.font = "bold 60px Arial";
+  c.textAlign = "center";
+  c.textBaseline = "middle";
+  c.fillText("Bienvenue sur mon site", canvas.width / 2, canvas.height / 2);
+
+  for (var i = 0; i < circleArray.length; i++) {
+    circleArray[i].update();
+  }
+}
+
+
 'use strict';
 
 var canvas = document.querySelector('canvas');
@@ -24,13 +41,13 @@ var colorArray = [
   "#3498DB",
   "#2980B9"
 ];
-
-//Event listeners
-window.addEventListener('mousemove', function(event){
+function mouseMoveHandler(event){
   mouse.x = event.x;
   mouse.y = event.y;
   console.log(mouse);
-});
+}
+window.addEventListener('mousemove', mouseMoveHandler);
+
 
 window.addEventListener('resize', function() {
   canvas.width = window.innerWidth;
@@ -125,3 +142,12 @@ setTimeout(() => {
   const canvas = document.getElementById('myCanvas');
   canvas.classList.add('hide');
 }, 2000);
+
+
+function stopCanvas() {
+  cancelAnimationFrame(animationFrameId); // stoppe l’animation
+  window.removeEventListener('mousemove', mouseMoveHandler);
+  canvas.classList.add('hide'); // déjà fait chez toi
+}
+
+setTimeout(stopCanvas, 2000);
