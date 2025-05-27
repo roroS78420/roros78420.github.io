@@ -1,18 +1,49 @@
 let animationFrameId; // pour pouvoir l'annuler plus tard
 
+'use strict';
+
+var canvas = document.querySelector('canvas');
+const dpr = window.devicePixelRatio || 1;
+
+canvas.width = window.innerWidth * dpr;
+canvas.height = window.innerHeight * dpr;
+canvas.style.width = window.innerWidth + "px";
+canvas.style.height = window.innerHeight + "px";
+
+var c = canvas.getContext('2d');
+c.scale(dpr, dpr);
+
+
+
 function animate(){
-  animationFrameId = requestAnimationFrame(animate); // stocke l'ID
+  animationFrameId = requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
+
+  const dpr = window.devicePixelRatio || 1;
+  const text = "Bienvenue sur mon site";
+  const maxWidth = window.innerWidth * 0.9;
+  let fontSize = 60;
+
+  c.font = `bold ${fontSize}px Arial`;
+  while (c.measureText(text).width > maxWidth && fontSize > 10) {
+    fontSize--;
+    c.font = `bold ${fontSize}px Arial`;
+  }
+
   c.fillStyle = "black";
-  c.font = "bold 60px Arial";
   c.textAlign = "center";
   c.textBaseline = "middle";
-  c.fillText("Bienvenue sur mon site", canvas.width / 2, canvas.height / 2);
 
-  for (var i = 0; i < circleArray.length; i++) {
+  // ✅ Centrage correct même sur mobile
+c.fillText(text, canvas.width / 2, canvas.height / 2);
+
+  for (let i = 0; i < circleArray.length; i++) {
     circleArray[i].update();
   }
 }
+
+
+
 
 
 'use strict';
@@ -22,9 +53,9 @@ var canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+
 var c = canvas.getContext('2d');
 
-console.log(canvas);
 
 var mouse = {
   x: undefined,
@@ -50,10 +81,16 @@ window.addEventListener('mousemove', mouseMoveHandler);
 
 
 window.addEventListener('resize', function() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = window.innerHeight + "px";
+  c.setTransform(1, 0, 0, 1, 0, 0); // Reset transform
+  c.scale(dpr, dpr); // Appliquer le scale
   init();
 });
+
 
 
 //Arc || Circle
@@ -119,22 +156,7 @@ function init (){
 };
 
 
-//Animate
-function animate(){
-  requestAnimationFrame(animate);
-  c.clearRect(0, 0, canvas.width, canvas.height);
-  c.fillStyle = "black";
-c.font = "bold 60px Arial";
-c.textAlign = "center";
-c.textBaseline = "middle";
-c.fillText("Bienvenue sur mon site", canvas.width / 2, canvas.height / 2);
 
-
-  //Drawing all particles
-  for (var i = 0; i < circleArray.length; i++) {
-    circleArray[i].update();
-  }
-}
 init();
 animate();
 
