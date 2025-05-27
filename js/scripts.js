@@ -16,12 +16,12 @@ function countUp(id, max, duration = 1000) {
 
 // fonction cs
 var img = {
-  blue: '<img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopujwezhhwszYI2gS09-5mpSEguXLPr7Vn35c18lwmO7Eu9TwjVbs8xVqZm_3J4TGcVU3YFCE-Ae5weq81JXovJXLyiRjvyFw4nfD30vgN-NX6nY/360fx360f"/>',
-  purple: '<img src="http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposr-kLAtl7PLZTjlH7du6kb-FlvD1DLfYkWNF18lwmO7Eu46h2QS1r0tvZjvyLI-RIwI6aV7X_ADrwevmhZO0up_AwSM1uHNw5nzD30vgQ0tV-jw/360fx360f"/>',
-  pink: '<img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposr-kLAtl7PLZTjlH_9mkgIWKkPvxDLDEm2JS4Mp1mOjG-oLKhF2zowcDPzixc9OLcw82ZlyF8wC8wb251MW4tcifmydi7CEn4HiPlhyy1BxJbeNshqPIHELeWfJvK5CfiA/360fx360f"/>',
-  red: '<img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV09-5gZKKkPLLMrfFqWZU7Mxkh9bN9J7yjRrhrUFuazjzJteVJlQ6NVHTrFe3wObs15G06picwHFnvid25C3bnhSzn1gSOQz0szG-/360fx360f"/>',
-  yellow: '<img src="http://vignette4.wikia.nocookie.net/cswikia/images/a/ad/Csgo-default_rare_item.png/revision/latest?cb=20150227163025"/>'
-}
+  blue: '<img src="https://i.kym-cdn.com/photos/images/original/000/234/765/b7e.jpg">',
+  purple: '<img src="https://i.kym-cdn.com/entries/icons/original/000/018/012/this_is_fine.jpeg">',
+  pink: '<img src="https://media.makeameme.org/created/it-works-i-d9d836abc6.jpg">',
+  red: '<img src="https://media.makeameme.org/created/its-not-a-b58ceb98f4.jpg">',
+  yellow: '<img src="https://miro.medium.com/v2/resize:fit:600/0*TzEwS_4n0YzHy1jQ.jpg">' // À remplacer
+};
 function random(min, max){
   return Math.floor((Math.random() * (max - min)) + min);
 }
@@ -29,24 +29,43 @@ function random(min, max){
 function reset(){
   $('.card').remove();
   for (var i = 0; i < 210; i++){
-    var element = '<div class="card" style="background-color: lightblue;" data-rarity="blue" id=itemNumber'+i+'>'+img.blue+'</div>';
-    var rand = random(1,10000)/100;
-    if (rand < 20){
-      element = '<div class="card" style="background-color: purple;" data-rarity="purple" id=itemNumber'+i+'>'+img.purple+'</div>';
+    var rand = Math.random() * 100;
+    let rarity, color, imgTag;
+
+    if (rand < 10) {
+      rarity = "yellow";
+      color = "yellow";
+    } else if (rand < 25) {
+      rarity = "red";
+      color = "red";
+    } else if (rand < 45) {
+      rarity = "pink";
+      color = "hotpink";
+    } else if (rand < 70) {
+      rarity = "purple";
+      color = "purple";
+    } else {
+      rarity = "blue";
+      color = "lightblue";
     }
-    if (rand < 5){
-      element = '<div class="card" style="background-color: hotpink;" data-rarity="pink" id=itemNumber'+i+'>'+img.pink+'</div>';
-    }
-    if (rand < 2){
-      element = '<div class="card" style="background-color: red;" data-rarity="red" id=itemNumber'+i+'>'+img.red+'</div>';
-    }
-    if (rand < 0.5){
-      element = '<div class="card" style="background-color: yellow;" data-rarity="yellow" id=itemNumber'+i+'>'+img.yellow+'</div>';
-    }
+
+    // extract the image URL from the img[rarity] string
+    const imgTagMatch = img[rarity].match(/src="([^"]+)"/);
+    const imgSrc = imgTagMatch ? imgTagMatch[1] : '';
+
+    const element = `
+      <div class="card" 
+           style="background-color: ${color};" 
+           data-rarity="${rarity}" 
+           data-img="${imgSrc}" 
+           id="itemNumber${i}">
+      </div>`;
     $('#cardList').append(element);
   }
-  $('.card').first().css('margin-left',-1000);
+
+  $('.card').first().css('margin-left', -1000);
 }
+
 
 function openCase(){
   reset();
@@ -59,10 +78,14 @@ function openCase(){
   $('.card').first().animate({
     marginLeft: -rand
   }, 5000, timing, function(){
-    var src = $('#itemNumber'+childNumber+' img').attr('src');
+    var src = $('#itemNumber' + childNumber).attr('data-img'); // ✅ ICI
+
     $('#itemNumber'+childNumber).css({background: "linear-gradient(#00bf09, #246b27)"});
 
-    $('#dialog-msg').html("You have received "+reward+" item!"+"<br><img src="+src+">");
+    $('#dialog-msg').html(`
+      <strong>${adrienDescription[reward]}</strong><br>
+      <img src="${src}" alt="Carte ${reward}">
+    `);
 
     $('#dialog').dialog({
       modal: true,
@@ -82,8 +105,36 @@ function openCase(){
         });
       }
     });
+
+    // Pour agrandir au clic (étape 3, si tu veux)
+    $('#dialog-msg img').css('cursor', 'zoom-in').on('click', function () {
+      $('#modalImage').attr('src', $(this).attr('src'));
+      $('#imageModal').dialog({
+        modal: true,
+        title: "Zoom sur l'image",
+        width: 600,
+        resizable: false,
+        draggable: false,
+        buttons: {
+          "Fermer": function () {
+            $(this).dialog("close");
+          }
+        }
+      });
+    });
+
   });
 }
+
+
+const adrienDescription = {
+  blue: "Adrien HTML – Il aligne tout avec des &lt;br&gt;",
+  purple: "Adrien CSS – Son dieu s'appelle <code>!important</code>",
+  pink: "Adrien JS – <code>console.log('il sait coder')</code>",
+  red: "Adrien Full Stack – Il code le front, le back et fait le café",
+  yellow: "Adrien DevOps – Il parle en Docker et déploie le vendredi à 18h"
+};
+
 /* SLIDE DELAY */ 
 function isInViewport(element) {
   const rect = element.getBoundingClientRect();
