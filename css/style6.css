@@ -377,12 +377,28 @@ section.slide {
 }
 
 /* Slide backgrounds */
-.slide1 { background: linear-gradient(to bottom, #ff66cc, #ff99cc); }
-.slide2 { background: linear-gradient(to bottom, #00ccff, #3366ff); }
-.slide3 { background: linear-gradient(to bottom, #33cc99, #66ffcc); }
-.slide4 { background: linear-gradient(to bottom, #9933ff, #cc66ff); }
-.slide5 { background: linear-gradient(to bottom, #ff9966, #ffcc66); }
+.slide1 { background: #142850; }
+.slide2 { background: #1D3B60; }
+.slide3 { background: #27496D; }
+.slide4 { background: #0C7B93; }
+.slide5 { background: #0077b6; }
 /* Masquer le bouton burger par défaut (desktop) */
+.btn-fermer {
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.btn-fermer:hover {
+  background-color: #0C7B93;
+}
+
 .burger {
   display: none; /* ← important pour l'ordi */
   position: fixed;

@@ -67,26 +67,30 @@ function reset(){
 }
 
 
-function openCase(){
+function openCase() {
   reset();
-  var rand = random(1000,20000);
-  var childNumber = Math.floor(rand/100)+4;
-  var timings = ["easeInOutBack","easeOutExpo","easeInOutBounce","easeOutQuad","swing","easeOutElastic","easeInOutElastic"];
-  var timing = timings[random(0,timings.length)];
-  var reward = $('#itemNumber'+childNumber).attr('data-rarity');
+
+  var rand = random(1000, 20000);
+  var childNumber = Math.floor(rand / 100) + 4;
+  var timings = ["easeInOutBack", "easeOutExpo", "easeInOutBounce", "easeOutQuad", "swing", "easeOutElastic", "easeInOutElastic"];
+  var timing = timings[random(0, timings.length)];
+  var reward = $('#itemNumber' + childNumber).attr('data-rarity');
 
   $('.card').first().animate({
     marginLeft: -rand
-  }, 5000, timing, function(){
-    var src = $('#itemNumber' + childNumber).attr('data-img'); // ✅ ICI
+  }, 5000, timing, function () {
+    var src = $('#itemNumber' + childNumber).attr('data-img');
 
-    $('#itemNumber'+childNumber).css({background: "linear-gradient(#00bf09, #246b27)"});
+    $('#itemNumber' + childNumber).css({
+      background: "linear-gradient(#00bf09, #246b27)"
+    });
 
     $('#dialog-msg').html(`
       <strong>${adrienDescription[reward]}</strong><br>
       <img src="${src}" alt="Carte ${reward}">
     `);
 
+    // Fenêtre de loot avec bouton "Fermer"
     $('#dialog').dialog({
       modal: true,
       title: "New item!",
@@ -94,27 +98,37 @@ function openCase(){
       draggable: false,
       width: 400,
       buttons: {
-        "Receive item": function () {
+        "Fermer": function () {
           $(this).dialog("close");
         }
       },
       open: function () {
         $(this).parent().css({
-          backgroundColor: '#07bdff',
-          color: '#000'
+          backgroundColor: '#1D3B60',
+          color: '#fff'
         });
+          $(this).parent().find('.ui-dialog-titlebar-close').hide();
+
+        // Style bouton
+        $(this).parent().find('.ui-dialog-buttonpane button').addClass('btn-fermer');
       }
     });
 
-    // Pour agrandir au clic (étape 3, si tu veux)
+    // Agrandir au clic avec bouton stylisé
     $('#dialog-msg img').css('cursor', 'zoom-in').on('click', function () {
       $('#modalImage').attr('src', $(this).attr('src'));
+
       $('#imageModal').dialog({
         modal: true,
         title: "Zoom sur l'image",
         width: 600,
         resizable: false,
         draggable: false,
+        closeOnEscape: false,
+        open: function () {
+          $(this).parent().find('.ui-dialog-titlebar-close').hide();
+          $(this).parent().find('.ui-dialog-buttonpane button').addClass('btn-fermer');
+        },
         buttons: {
           "Fermer": function () {
             $(this).dialog("close");
@@ -122,9 +136,9 @@ function openCase(){
         }
       });
     });
-
   });
 }
+
 
 
 const adrienDescription = {
