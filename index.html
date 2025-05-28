@@ -16,6 +16,7 @@
           <script src="js/scripts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js" ></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 
 <body>
@@ -36,6 +37,35 @@
     </nav>
   </div>
 </header>
+<nav class="section-navigate js--navigate">
+  <ul class="section-navigate__items js--navigate-items">
+    <li class="section-navigate__item">
+      <a href="#accueil" class="section-navigate__link js--navigate-link is--active">
+        <span class="section-navigate__name">First</span>
+      </a>
+    </li>
+    <li class="section-navigate__item">
+      <a href="#connexion" class="section-navigate__link js--navigate-link">
+        <span class="section-navigate__name">Second</span>
+      </a>
+    </li>
+    <li class="section-navigate__item">
+      <a href="#stats" class="section-navigate__link js--navigate-link">
+        <span class="section-navigate__name">Third</span>
+      </a>
+    </li>
+    <li class="section-navigate__item">
+      <a href="#competences" class="section-navigate__link js--navigate-link">
+        <span class="section-navigate__name">Fourth</span>
+      </a>
+    </li>
+    <li class="section-navigate__item">
+      <a href="#experiences" class="section-navigate__link js--navigate-link">
+        <span class="section-navigate__name">Fifth</span>
+      </a>
+    </li>
+  </ul>
+</nav>
           <div class="burger" id="burger">  
   <span></span>
   <span></span>
@@ -57,15 +87,18 @@
 
   <!-- Slide 2 : Unbox -->
   <section class="slide slide2" id="connexion">
-    <h2 class="text-4xl font-bold mb-6">Unbox Animation</h2>
-    <div id="unbox-area">
-      <div class="arrow-down"></div>
-      <div id="cardList"></div>
-    </div>
-    <button onclick="openCase();" class="mt-4 bg-white text-indigo-800 px-4 py-2 rounded">Open</button>
-    <div id="dialog" class="mt-4">
-      <div id="dialog-msg"></div>
-    </div>
+    <h2 class="text-4xl font-bold mb-6">Quel Adrien allez-vous recruter ?</h2>
+    <div id="unbox-wrapper" class="invisible">
+  <div id="unbox-area">
+    <div class="arrow-down"></div>
+    <div id="cardList"></div>
+  </div>
+  <button onclick="openCase();" class="mt-4 bg-white text-indigo-800 px-4 py-2 rounded">Open</button>
+  <div id="dialog" class="mt-4">
+    <div id="dialog-msg"></div>
+  </div>
+</div>
+
   </section>
 
   <div id="imageModal" style="display:none;">

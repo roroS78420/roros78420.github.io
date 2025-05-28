@@ -90,29 +90,37 @@ function openCase() {
       <img src="${src}" alt="Carte ${reward}">
     `);
 
-    // Fenêtre de loot avec bouton "Fermer"
-    $('#dialog').dialog({
-      modal: true,
-      title: "New item!",
-      resizable: false,
-      draggable: false,
-      width: 400,
-      buttons: {
-        "Fermer": function () {
-          $(this).dialog("close");
-        }
-      },
-      open: function () {
-        $(this).parent().css({
-          backgroundColor: '#1D3B60',
-          color: '#fff'
-        });
-          $(this).parent().find('.ui-dialog-titlebar-close').hide();
+// Fenêtre de loot avec bouton "Fermer"
+$('#dialog').dialog({
+  modal: true,
+  title: "Profil obtenu :",
+  resizable: false,
+  draggable: false,
+  width: 400,
+  buttons: {
+    "Fermer": function () {
+      $(this).dialog("close");
+    }
+  },
+  open: function () {
+    const $parent = $(this).parent();
 
-        // Style bouton
-        $(this).parent().find('.ui-dialog-buttonpane button').addClass('btn-fermer');
-      }
+    // ✅ Applique les styles à la boîte entière
+    $parent.css({
+      backgroundColor: '#1D3B60',
+      color: '#fff',
+      border: '4px solid #0C7B93',     // Bordure visible
+      borderRadius: '12px',            // Coins arrondis
+      boxShadow: '0 0 20px #0C7B93'    // Effet glow doux
     });
+
+    // ✅ Cache le bouton "X"
+    $parent.find('.ui-dialog-titlebar-close').hide();
+
+    // ✅ Style bouton
+    $parent.find('.ui-dialog-buttonpane button').addClass('btn-fermer');
+  }
+});
 
     // Agrandir au clic avec bouton stylisé
     $('#dialog-msg img').css('cursor', 'zoom-in').on('click', function () {
@@ -120,7 +128,7 @@ function openCase() {
 
       $('#imageModal').dialog({
         modal: true,
-        title: "Zoom sur l'image",
+        
         width: 600,
         resizable: false,
         draggable: false,
@@ -295,4 +303,70 @@ document.addEventListener('DOMContentLoaded', () => {
       header.classList.remove('affix');
     }
   });
+});
+document.addEventListener("DOMContentLoaded", function () {
+  const unboxWrapper = document.getElementById("unbox-wrapper");
+  let hasAnimatedUnbox = false;
+
+  const observerUnbox = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasAnimatedUnbox) {
+        hasAnimatedUnbox = true;
+
+          unboxWrapper.classList.remove("invisible");
+        unboxWrapper.classList.add("visible","animate__animated", "animate__bounceInUp");
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 1
+  });
+
+  const section2 = document.getElementById("connexion");
+  if (section2) {
+    observerUnbox.observe(section2);
+  }
+});
+document.addEventListener("DOMContentLoaded", function () {
+  const navLinks = document.querySelectorAll(".js--navigate-link");
+  const sections = Array.from(navLinks).map(link => {
+    const id = link.getAttribute("href").substring(1);
+    return document.getElementById(id);
+  }).filter(Boolean);
+
+navLinks.forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    const targetId = link.getAttribute("href").substring(1);
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+});
+
+
+  // Observer pour mettre à jour la classe active
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            if (link.getAttribute("href").substring(1) === id) {
+              link.classList.add("is--active");
+            } else {
+              link.classList.remove("is--active");
+            }
+          });
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
+
+  sections.forEach(section => observer.observe(section));
 });

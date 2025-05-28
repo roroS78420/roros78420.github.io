@@ -68,7 +68,7 @@ nav {
   background: transparent;
 }
 
-ul {
+nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -121,7 +121,7 @@ nav a:hover:after {
     margin: 0 0 16px 0;
   }
 
-  ul {
+  nav ul {
     float: none;
     flex-direction: column;
     align-items: center;
@@ -385,16 +385,14 @@ section.slide {
 /* Masquer le bouton burger par défaut (desktop) */
 .btn-fermer {
   background-color: #0077b6;
-  color: white;
   border: none;
-  padding: 8px 20px;
+  padding: 10px 20px;
+  color: white;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
 }
-
 .btn-fermer:hover {
   background-color: #0C7B93;
 }
@@ -462,4 +460,69 @@ section.slide {
   #main-header {
     background-color: black !important;
   }
+}
+#unbox-wrapper {
+  transition: opacity 1s ease;
+}
+ .invisible {
+    visibility: hidden;
+  }
+.section-navigate {
+  position: fixed;
+  top: 50%;
+  right: 1em;
+  transform: translateY(-50%);
+  z-index: 1031;
+  opacity: 1;
+  transition: opacity .05s ease;
+      pointer-events: none; /* ← Important si tu veux que ce bloc ne bloque pas l'interaction avec le scroll */
+
+}
+
+.section-navigate.is--inactive {
+  opacity: 0;
+}
+
+.section-navigate__items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+
+
+.section-navigate__link {
+  text-decoration: none;
+  position: relative;
+  pointer-events: auto; /* ← ici, et plus besoin de le mettre dans ::before */
+  display: flex;
+  align-items: center;
+  gap: 6px; /* petit espace entre le point et le texte */
+  color: white; /* optionnel : pour s'assurer que le texte est visible */
+}
+
+
+.section-navigate__link::before {
+  content: '\25CF';
+  width: 20px;
+  height: 20px;
+  font-size: 13px;
+  line-height: 26px;
+  color: white;
+  position: relative;
+  left: 2px;
+
+}
+
+.section-navigate__link:hover .section-navigate__name {
+  opacity: 1;
+}
+
+.section-navigate__link.is--active::before {
+  content: '\25CF';
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  left: 0;
 }
