@@ -121,27 +121,32 @@ $('#dialog').dialog({
 
     $('#dialog-msg img').css('cursor', 'zoom-in').on('click', function () {
       $('#modalImage').attr('src', $(this).attr('src'));
+$('#imageModal').dialog({
+  modal: true,
+  resizable: false,
+  draggable: false,
+  closeOnEscape: false,
+  width: Math.min($(window).width() * 0.9, 600), // 90% largeur écran ou max 600px
+  open: function () {
+    $(this).parent().find('.ui-dialog-titlebar-close').hide();
+    $(this).parent().find('.ui-dialog-buttonpane button').addClass('btn-fermer');
 
-      $('#imageModal').dialog({
-        modal: true,
-        
-        width: 600,
-        resizable: false,
-        draggable: false,
-        closeOnEscape: false,
-        open: function () {
-          $(this).parent().find('.ui-dialog-titlebar-close').hide();
-          $(this).parent().find('.ui-dialog-buttonpane button').addClass('btn-fermer');
-        },
-        buttons: {
-          "Fermer": function () {
-            $(this).dialog("close");
-          }
-        }
-      });
+    // On adapte aussi la hauteur max de l'image
+    $('#modalImage').css({
+      width: '100%',
+      height: 'auto',
+      'max-height': '80vh', // Ne dépasse pas 80% de la hauteur de l'écran
+      display: 'block',
+      margin: '0 auto'
     });
-  });
-}
+  },
+  buttons: {
+    "Fermer": function () {
+      $(this).dialog("close");
+    }
+  }
+});
+
 
 
 
@@ -195,14 +200,6 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(target);
   }
 });
-if (window.innerWidth <= 768) {
-  setTimeout(() => {
-    if (!hasAnimatedUnbox) {
-      unboxWrapper.classList.remove("invisible");
-      unboxWrapper.classList.add("visible", "animate__animated", "animate__bounceInUp");
-    }
-  }, 1500);
-}
 
 function countUp(id, endValue) {
   const el = document.getElementById(id);

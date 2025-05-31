@@ -5,6 +5,8 @@ html, body {
   scroll-behavior: smooth;
   height: 100%;
   overflow-y: auto;
+    max-width: 100%;
+  overflow-x: hidden;
 }
 header {
   position: fixed;
@@ -517,6 +519,13 @@ section.slide {
   left: 2px;
 
 }
+#imageModal img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 
 .section-navigate__link:hover .section-navigate__name {
   opacity: 1;
