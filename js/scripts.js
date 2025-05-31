@@ -105,7 +105,6 @@ $('#dialog').dialog({
   open: function () {
     const $parent = $(this).parent();
 
-    // ✅ Applique les styles à la boîte entière
     $parent.css({
       backgroundColor: '#1D3B60',
       color: '#fff',
@@ -114,15 +113,12 @@ $('#dialog').dialog({
       boxShadow: '0 0 20px #0C7B93'    // Effet glow doux
     });
 
-    // ✅ Cache le bouton "X"
     $parent.find('.ui-dialog-titlebar-close').hide();
 
-    // ✅ Style bouton
     $parent.find('.ui-dialog-buttonpane button').addClass('btn-fermer');
   }
 });
 
-    // Agrandir au clic avec bouton stylisé
     $('#dialog-msg img').css('cursor', 'zoom-in').on('click', function () {
       $('#modalImage').attr('src', $(this).attr('src'));
 
@@ -157,7 +153,6 @@ const adrienDescription = {
   yellow: "Adrien DevOps – Il parle en Docker et déploie le vendredi à 18h"
 };
 
-/* SLIDE DELAY */ 
 function isInViewport(element) {
   const rect = element.getBoundingClientRect();
   return (
@@ -191,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     },
     {
-      threshold: 0.5, // au moins 50% visible
+      threshold: 0.3,
     }
   );
 
@@ -200,11 +195,19 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(target);
   }
 });
+if (window.innerWidth <= 768) {
+  setTimeout(() => {
+    if (!hasAnimatedUnbox) {
+      unboxWrapper.classList.remove("invisible");
+      unboxWrapper.classList.add("visible", "animate__animated", "animate__bounceInUp");
+    }
+  }, 1500);
+}
 
 function countUp(id, endValue) {
   const el = document.getElementById(id);
   let start = 0;
-  const duration = 1000; // Durée totale (ms)
+  const duration = 1000;
   const stepTime = 20;
   const increment = endValue / (duration / stepTime);
 
@@ -228,12 +231,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (entry.isIntersecting && !hasAnimatedStats) {
           hasAnimatedStats = true;
 
-          // Lance les compteurs seulement à ce moment
           countUp("xp-years", 3);
           countUp("projects", 15);
           countUp("certs", 2);
 
-          observer.unobserve(entry.target); // Stop l'observation après animation
+          observer.unobserve(entry.target); 
         }
       });
     },
