@@ -482,7 +482,10 @@ section.slide {
 .section-navigate.is--inactive {
   opacity: 0;
 }
-
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
 .section-navigate__items {
   display: flex;
   flex-direction: column;
