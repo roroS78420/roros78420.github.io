@@ -61,12 +61,10 @@ header.affix nav ul li {
 .logo-box img {display: block;}
 /* ==== BASE EXISTANTE ==== */
 nav {
-  overflow: hidden;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  padding: 20px 0;
   background: transparent;
 }
 
