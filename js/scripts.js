@@ -308,6 +308,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 document.addEventListener("DOMContentLoaded", function () {
   const unboxWrapper = document.getElementById("unbox-wrapper");
+
+  // Si on est sur mobile (par exemple largeur ≤ 768px), afficher directement sans animation
+  if (window.innerWidth <= 768) {
+    unboxWrapper.classList.remove("invisible");
+    unboxWrapper.classList.add("visible");
+    return; // on sort, pas d'observer
+  }
+
+  // Desktop : animation avec IntersectionObserver
   let hasAnimatedUnbox = false;
 
   const observerUnbox = new IntersectionObserver((entries, observer) => {
@@ -315,14 +324,14 @@ document.addEventListener("DOMContentLoaded", function () {
       if (entry.isIntersecting && !hasAnimatedUnbox) {
         hasAnimatedUnbox = true;
 
-          unboxWrapper.classList.remove("invisible");
-        unboxWrapper.classList.add("visible","animate__animated", "animate__bounceInUp");
+        unboxWrapper.classList.remove("invisible");
+        unboxWrapper.classList.add("visible", "animate__animated", "animate__bounceInUp");
 
         observer.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 1
+    threshold: 0.3
   });
 
   const section2 = document.getElementById("connexion");
