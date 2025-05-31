@@ -232,9 +232,8 @@ Bar Graph
 
 .html { width: 85%; background-color: #a378aa; }
 .css { width: 80%; background-color: #a378aa; }
-.js { width: 60%; background-color: #a378aa; }
-.php { width: 40%; background-color: #a378aa; }
-.drupal { width: 62%; background-color: #a378aa; }
+.js { width: 75%; background-color: #a378aa; }
+.php { width: 80%; background-color: #a378aa; }
 
 @keyframes slide-left {
   0% { transform: translateX(-200%); }
@@ -537,4 +536,9 @@ section.slide {
   height: 20px;
   font-size: 20px;
   left: 0;
+}
+@media (max-width: 768px) {
+  .section-navigate {
+    display: none !important;
+  }
 }

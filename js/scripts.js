@@ -39,16 +39,16 @@ function reset(){
     var rand = Math.random() * 100;
     let rarity, color, imgTag;
 
-    if (rand < 10) {
+    if (rand < 20) {
       rarity = "yellow";
       color = "yellow";
-    } else if (rand < 25) {
+    } else if (rand < 40) {
       rarity = "red";
       color = "red";
-    } else if (rand < 45) {
+    } else if (rand < 60) {
       rarity = "pink";
       color = "hotpink";
-    } else if (rand < 70) {
+    } else if (rand <80) {
       rarity = "purple";
       color = "purple";
     } else {
@@ -73,7 +73,6 @@ function reset(){
   $('.card').first().css('margin-left', -1000);
 }
 
-
 function openCase() {
     reset();
 
@@ -93,71 +92,65 @@ function openCase() {
         });
 
         $('#dialog-msg').html(`
-      <strong>${adrienDescription[reward]}</strong><br>
-      <img src="${src}" alt="Carte ${reward}">
-    `)
-    });
+            <strong>${adrienDescription[reward]}</strong><br>
+            <img src="${src}" alt="Carte ${reward}">
+        `);
 
-    // Fenêtre de loot avec bouton "Fermer"
-    $('#dialog').dialog({
-        modal: true,
-        title: "Profil obtenu :",
-        resizable: false,
-        draggable: false,
-        width: 400,
-        buttons: {
-            "Fermer": function () {
-                $(this).dialog("close");
-            }
-        },
-        open: function () {
-            const $parent = $(this).parent();
-
-            $parent.css({
-                backgroundColor: '#1D3B60',
-                color: '#fff',
-                border: '4px solid #0C7B93',     // Bordure visible
-                borderRadius: '12px',            // Coins arrondis
-                boxShadow: '0 0 20px #0C7B93'    // Effet glow doux
-            });
-
-            $parent.find('.ui-dialog-titlebar-close').hide();
-
-            $parent.find('.ui-dialog-buttonpane button').addClass('btn-fermer');
-        }
-    });
-
-
-    $('#dialog-msg img').css('cursor', 'zoom-in').on('click', function () {
-        $('#modalImage').attr('src', $(this).attr('src'));
-        $('#imageModal').dialog({
+        // Déplacement ici : ouverture de la pop-up **à la fin** de l'animation
+        $('#dialog').dialog({
             modal: true,
+            title: "Profil obtenu :",
             resizable: false,
             draggable: false,
-            closeOnEscape: false,
-            width: Math.min($(window).width() * 0.9, 600), // 90% largeur écran ou max 600px
-            open: function () {
-                $(this).parent().find('.ui-dialog-titlebar-close').hide();
-                $(this).parent().find('.ui-dialog-buttonpane button').addClass('btn-fermer');
-
-                // On adapte aussi la hauteur max de l'image
-                $('#modalImage').css({
-                    width: '100%',
-                    height: 'auto',
-                    'max-height': '80vh', // Ne dépasse pas 80% de la hauteur de l'écran
-                    display: 'block',
-                    margin: '0 auto'
-                });
-            },
+            width: 400,
             buttons: {
                 "Fermer": function () {
                     $(this).dialog("close");
                 }
+            },
+            open: function () {
+                const $parent = $(this).parent();
+
+                $parent.css({
+                    backgroundColor: '#1D3B60',
+                    color: '#fff',
+                    border: '4px solid #0C7B93',
+                    borderRadius: '12px',
+                    boxShadow: '0 0 20px #0C7B93'
+                });
+
+                $parent.find('.ui-dialog-titlebar-close').hide();
+                $parent.find('.ui-dialog-buttonpane button').addClass('btn-fermer');
             }
         });
 
+        $('#dialog-msg img').css('cursor', 'zoom-in').on('click', function () {
+            $('#modalImage').attr('src', $(this).attr('src'));
+            $('#imageModal').dialog({
+                modal: true,
+                resizable: false,
+                draggable: false,
+                closeOnEscape: false,
+                width: Math.min($(window).width() * 0.9, 600),
+                open: function () {
+                    $(this).parent().find('.ui-dialog-titlebar-close').hide();
+                    $(this).parent().find('.ui-dialog-buttonpane button').addClass('btn-fermer');
 
-
+                    $('#modalImage').css({
+                        width: '100%',
+                        height: 'auto',
+                        'max-height': '80vh',
+                        display: 'block',
+                        margin: '0 auto'
+                    });
+                },
+                buttons: {
+                    "Fermer": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        });
 
     });
 }
@@ -234,8 +227,8 @@ function openCase() {
                         hasAnimatedStats = true;
 
                         countUp("xp-years", 3);
-                        countUp("projects", 15);
-                        countUp("certs", 2);
+                        countUp("projects", 14);
+                        countUp("certs", 3);
 
                         observer.unobserve(entry.target);
                     }
