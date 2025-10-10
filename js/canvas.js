@@ -30,7 +30,7 @@ function animate(){
     c.font = `bold ${fontSize}px Arial`;
   }
 
-  c.fillStyle = "black";
+  c.fillStyle = "white";
   c.textAlign = "center";
   c.textBaseline = "middle";
 

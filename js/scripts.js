@@ -32,126 +32,129 @@ const adrienDescription = {
 function random(min, max){
   return Math.floor((Math.random() * (max - min)) + min);
 }
+// Fonction reset() CORRIGÉE avec des couleurs modernes
+function reset() {
+    $('#cardList').empty(); // .remove() peut poser problème, .empty() est plus sûr
+    
+    // On définit une palette de couleurs qui correspond au nouveau design
+    const rarityColors = {
+        yellow: '#f0db4f', // Jaune/Or pour la rareté max
+        red: '#e44d26',     // Orange/Rouge
+        pink: '#787cb5',    // Violet (anciennement rose)
+        purple: '#264de4',  // Bleu
+        blue: '#00A3FF'     // Bleu clair (notre couleur d'accent)
+    };
 
-function reset(){
-  $('.card').remove();
-  for (var i = 0; i < 210; i++){
-    var rand = Math.random() * 100;
-    let rarity, color, imgTag;
+    for (var i = 0; i < 210; i++) {
+        var rand = Math.random() * 100;
+        let rarity;
 
-    if (rand < 20) {
-      rarity = "yellow";
-      color = "yellow";
-    } else if (rand < 40) {
-      rarity = "red";
-      color = "red";
-    } else if (rand < 60) {
-      rarity = "pink";
-      color = "hotpink";
-    } else if (rand <80) {
-      rarity = "purple";
-      color = "purple";
-    } else {
-      rarity = "blue";
-      color = "lightblue";
+        if (rand < 20) { rarity = "yellow"; } // Plus rare
+        else if (rand < 40) { rarity = "red"; }
+        else if (rand < 60) { rarity = "pink"; }
+        else if (rand < 80) { rarity = "purple"; }
+        else { rarity = "blue"; }
+
+        const color = rarityColors[rarity]; // On utilise notre nouvelle palette
+        const imgSrc = img[rarity].match(/src="([^"]+)"/)[1];
+
+        const element = `
+            <div class="card" 
+                 style="background-color: ${color};" 
+                 data-rarity="${rarity}" 
+                 data-img="${imgSrc}" 
+                 id="itemNumber${i}">
+                 <img src="${imgSrc}" alt=""> 
+            </div>`;
+        $('#cardList').append(element);
     }
 
-    // extract the image URL from the img[rarity] string
-    const imgTagMatch = img[rarity].match(/src="([^"]+)"/);
-    const imgSrc = imgTagMatch ? imgTagMatch[1] : '';
-
-    const element = `
-      <div class="card" 
-           style="background-color: ${color};" 
-           data-rarity="${rarity}" 
-           data-img="${imgSrc}" 
-           id="itemNumber${i}">
-      </div>`;
-    $('#cardList').append(element);
-  }
-
-  $('.card').first().css('margin-left', -1000);
+    $('.card').first().css('margin-left', -1000);
 }
+
 
 function openCase() {
     reset();
 
     var rand = random(1000, 20000);
-    var childNumber = Math.floor(rand / 100) + 4;
     var timings = ["easeInOutBack", "easeOutExpo", "easeInOutBounce", "easeOutQuad", "swing", "easeOutElastic", "easeInOutElastic"];
     var timing = timings[random(0, timings.length)];
-    var reward = $('#itemNumber' + childNumber).attr('data-rarity');
 
     $('.card').first().animate({
         marginLeft: -rand
     }, 5000, timing, function () {
-        var src = $('#itemNumber' + childNumber).attr('data-img');
+        // --- DÉBUT DE LA NOUVELLE LOGIQUE FIABLE ---
 
-        $('#itemNumber' + childNumber).css({
-            background: "linear-gradient(#00bf09, #246b27)"
-        });
+        // 1. On trouve le centre de la zone de la roulette
+        const container = $('#cardList');
+        const containerCenter = container.offset().left + (container.width() / 2);
 
-        $('#dialog-msg').html(`
-            <strong>${adrienDescription[reward]}</strong><br>
-            <img src="${src}" alt="Carte ${reward}">
-        `);
+        let winningCard = null;
+        let minDistance = Infinity;
 
-        // Déplacement ici : ouverture de la pop-up **à la fin** de l'animation
-        $('#dialog').dialog({
-            modal: true,
-            title: "Profil obtenu :",
-            resizable: false,
-            draggable: false,
-            width: 400,
-            buttons: {
-                "Fermer": function () {
-                    $(this).dialog("close");
-                }
-            },
-            open: function () {
-                const $parent = $(this).parent();
+        // 2. On parcourt toutes les cartes pour trouver celle qui est la plus proche du centre
+        $('.card').each(function() {
+            const card = $(this);
+            const cardCenter = card.offset().left + (card.width() / 2);
+            const distance = Math.abs(containerCenter - cardCenter);
 
-                $parent.css({
-                    backgroundColor: '#1D3B60',
-                    color: '#fff',
-                    border: '4px solid #0C7B93',
-                    borderRadius: '12px',
-                    boxShadow: '0 0 20px #0C7B93'
-                });
-
-                $parent.find('.ui-dialog-titlebar-close').hide();
-                $parent.find('.ui-dialog-buttonpane button').addClass('btn-fermer');
+            if (distance < minDistance) {
+                minDistance = distance;
+                winningCard = card; // On a trouvé la carte la plus proche !
             }
         });
 
-        $('#dialog-msg img').css('cursor', 'zoom-in').on('click', function () {
-            $('#modalImage').attr('src', $(this).attr('src'));
-            $('#imageModal').dialog({
+        // 3. On utilise la VRAIE carte gagnante pour afficher le résultat
+        if (winningCard) {
+            const reward = winningCard.attr('data-rarity');
+            const src = winningCard.attr('data-img');
+
+            // On applique le style à la carte gagnante
+            winningCard.css({
+                background: "var(--accent-color)",
+                boxShadow: "0 0 20px var(--accent-color)",
+                transform: "scale(1.05)" // On la fait ressortir un peu
+            });
+
+            // On affiche les bonnes informations dans la pop-up
+            $('#dialog-msg').html(`
+                <strong>${adrienDescription[reward]}</strong><br>
+                <img src="${src}" alt="Carte ${reward}">
+            `);
+
+            // Le reste de ton code pour la pop-up est bon
+            $('#dialog').dialog({
                 modal: true,
+                title: "Profil obtenu :",
                 resizable: false,
                 draggable: false,
-                closeOnEscape: false,
-                width: Math.min($(window).width() * 0.9, 600),
-                open: function () {
-                    $(this).parent().find('.ui-dialog-titlebar-close').hide();
-                    $(this).parent().find('.ui-dialog-buttonpane button').addClass('btn-fermer');
-
-                    $('#modalImage').css({
-                        width: '100%',
-                        height: 'auto',
-                        'max-height': '80vh',
-                        display: 'block',
-                        margin: '0 auto'
-                    });
-                },
+                width: 400,
                 buttons: {
                     "Fermer": function () {
                         $(this).dialog("close");
                     }
+                },
+                open: function () {
+                    const $parent = $(this).parent();
+                    $parent.css({
+                        backgroundColor: '#1e1e1e',
+                        color: 'var(--text-primary)',
+                        border: '2px solid var(--accent-color)',
+                        borderRadius: '8px',
+                        boxShadow: '0 0 25px rgba(0, 163, 255, 0.5)'
+                    });
+                    $parent.find('.ui-dialog-titlebar').css({
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        color: '#fff',
+                        'font-weight': 'bold'
+                    });
+                    $parent.find('.ui-dialog-titlebar-close').hide();
+                    $parent.find('.ui-dialog-buttonpane button').addClass('btn-fermer');
                 }
             });
-        });
-
+        }
+        // --- FIN DE LA NOUVELLE LOGIQUE ---
     });
 }
 

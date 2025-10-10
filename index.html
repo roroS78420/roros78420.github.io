@@ -17,6 +17,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js" ></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -33,6 +39,8 @@
         <li><a href="#stats">Statistiques</a></li>
         <li><a href="#competences">Compétences</a></li>
         <li><a href="#experiences">Expériences</a></li>
+                <li><a href="#projets">Projets</a></li>
+
       </ul>
     </nav>
   </div>
@@ -64,6 +72,11 @@
         <span class="section-navigate__name">Fifth</span>
       </a>
     </li>
+            <li class="section-navigate__item">
+            <a href="#projets" class="section-navigate__link js--navigate-link">
+                <span class="section-navigate__name">Sixth</span>
+            </a>
+        </li>
   </ul>
 </nav>
           <div class="burger" id="burger">  
@@ -131,6 +144,13 @@
     <div class="bar-container"><div class="css bg-blue-500 h-4 w-[90%] rounded"><p class="text-sm text-white">CSS</p></div></div>
     <div class="bar-container"><div class="js bg-yellow-500 h-4 w-[90%] rounded"><p class="text-sm text-black">JavaScript</p></div></div>
     <div class="bar-container"><div class="php bg-purple-600 h-4 w-[90%] rounded"><p class="text-sm text-white">PHP</p></div></div>
+    <div class="bar-container"><div class="suite-office"><p>Suite Office</p></div></div>
+<div class="bar-container"><div class="mysql"><p>MySQL</p></div></div>
+<div class="bar-container"><div class="python"><p>Python</p></div></div>
+<div class="bar-container"><div class="wordpress"><p>WordPress</p></div></div>
+<div class="bar-container"><div class="csharp"><p>C#</p></div></div>
+<div class="bar-container"><div class="git"><p>Git</p></div></div>
+<div class="bar-container"><div class="react"><p>React.js</p></div></div>
   </div>
 </section>
 
@@ -144,7 +164,66 @@
   </p>
   </section>
 
+</section>
 
+<section class="slide slide6" id="projets">
+    <div class="container">
+        <h2 class="text-4xl font-bold mb-5">Mes Projets</h2>
+        <div class="projects-container">
+
+            <div class="project-card">
+                <img src="https://placehold.co/600x400/1E1E1E/FFFFFF?text=Site+E-commerce" alt="Projet E-commerce" class="project-card-img">
+                <div class="project-card-body">
+                    <h5 class="card-title">Site E-commerce "Filelec"</h5>
+                    <p class="card-text">Développement d'une boutique en ligne complète avec un back-office pour la gestion des produits, des commandes et des utilisateurs.</p>
+                    <div class="tech-tags">
+                        <span class="tech-badge">PHP</span>
+                        <span class="tech-badge">MVC</span>
+                        <span class="tech-badge">MySQL</span>
+                        <span class="tech-badge">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/ton-pseudo/nom-du-projet-1" target="_blank" class="btn-project">
+                        <i class="bi bi-github"></i> Voir le code
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://placehold.co/600x400/1E1E1E/FFFFFF?text=Auto-École+App" alt="Projet Auto-École" class="project-card-img">
+                <div class="project-card-body">
+                    <h5 class="card-title">Portail Élève "HiroAuto"</h5>
+                    <p class="card-text">Création d'un espace membre pour auto-école avec messagerie, calendrier de leçons et suivi de progression pour élèves et moniteurs.</p>
+                    <div class="tech-tags">
+                        <span class="tech-badge">PHP</span>
+                        <span class="tech-badge">Bootstrap</span>
+                        <span class="tech-badge">FullCalendar.js</span>
+                    </div>
+                    <a href="https://github.com/ton-pseudo/nom-du-projet-2" target="_blank" class="btn-project">
+                        <i class="bi bi-github"></i> Voir le code
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://placehold.co/600x400/1E1E1E/FFFFFF?text=Mon+CV+Animé" alt="Projet CV" class="project-card-img">
+                <div class="project-card-body">
+                    <h5 class="card-title">CV Interactif</h5>
+                    <p class="card-text">Conception de ce portfolio en ligne "one-page" avec des animations CSS et des fonctionnalités interactives en JavaScript.</p>
+                    <div class="tech-tags">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">jQuery</span>
+                    </div>
+                    <a href="https://github.com/ton-pseudo/nom-du-projet-3" target="_blank" class="btn-project">
+                        <i class="bi bi-github"></i> Voir le code
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
 </body>
 </html>
