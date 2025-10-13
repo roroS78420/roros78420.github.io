@@ -1,5 +1,5 @@
 /* =================================================== */
-/* NOUVEAU DESIGN CV 2025 - VERSION SÉCURISÉE      */
+/* NOUVEAU DESIGN CV 2025 - VERSION FINALE           */
 /* =================================================== */
 
 /* --- 1. CONFIGURATION GLOBALE & VARIABLES CSS --- */
@@ -14,109 +14,39 @@
 
 /* --- 2. STYLES DE BASE (BODY, TYPOGRAPHIE) --- */
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    background-color: var(--dark-bg);
-    color: var(--text-primary);
-    font-family: var(--font-main);
-    overflow-x: hidden;
+    margin: 0; padding: 0; height: 100%;
+    scroll-snap-type: y mandatory; scroll-behavior: smooth;
+    background-color: var(--dark-bg); color: var(--text-primary);
+    font-family: var(--font-main); overflow-x: hidden;
 }
-
-h1, h2, h3 {
-    font-weight: 700;
-}
-
-h1 {
-    font-size: 3.5rem;
-    color: #fff;
-}
-
-p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    max-width: 600px;
-    color: var(--text-secondary);
-}
-
-a {
-    color: var(--accent-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #fff;
-}
+h1, h2, h3 { font-weight: 700; }
+h1 { font-size: 3.5rem; color: #fff; }
+p { font-size: 1.1rem; line-height: 1.7; max-width: 600px; color: var(--text-secondary); }
+a { color: var(--accent-color); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: #fff; }
 
 /* --- 3. HEADER & NAVIGATION PRINCIPALE --- */
-/* On cible l'ID exact de ton header */
 #main-header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    padding: 1.5rem 2rem;
-    transition: all 0.3s ease;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed; width: 100%; top: 0; left: 0; z-index: 1000;
+    padding: 1.5rem 2rem; transition: all 0.3s ease; display: flex;
+    justify-content: space-between; align-items: center;
 }
-
 #main-header.affix {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1rem 2rem;
+    background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 1rem 2rem;
 }
-
-#main-header h1 {
-    font-size: 1.8rem;
-    color: var(--text-primary);
-    margin: 0;
-}
-
-/* On cible la nav par son ID pour la compatibilité JS */
-nav#navbar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-nav#navbar li {
-    display: inline-block;
-    margin-left: 30px;
-}
-
+#main-header h1 { font-size: 1.8rem; color: var(--text-primary); margin: 0; }
+nav#navbar ul { list-style: none; margin: 0; padding: 0; display: flex; }
+nav#navbar li { display: inline-block; margin-left: 30px; }
 nav#navbar a {
-    color: var(--text-primary);
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 0.9rem;
-    position: relative;
-    padding-bottom: 5px;
+    color: var(--text-primary); text-transform: uppercase; font-weight: 500;
+    font-size: 0.9rem; position: relative; padding-bottom: 5px;
 }
-
 nav#navbar a:after {
-    content: "";
-    width: 0;
-    height: 2px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background: var(--accent-color);
-    transition: width 0.3s ease;
+    content: ""; width: 0; height: 2px; position: absolute; left: 0; bottom: 0;
+    background: var(--accent-color); transition: width 0.3s ease;
 }
-
-nav#navbar a:hover:after {
-    width: 100%;
-}
-
+nav#navbar a:hover:after { width: 100%; }
 
 /* --- 4. STRUCTURE DES SECTIONS (SLIDES) --- */
 section.slide {
@@ -130,10 +60,18 @@ section.slide {
     padding: 2rem;
 }
 
+/* --- CORRECTION SPÉCIFIQUE POUR LA SECTION PROJETS --- */
+section#projets {
+    display: block; /* On annule le centrage flexbox des autres slides */
+    height: auto; /* La hauteur s'adaptera au contenu */
+    min-height: 100vh; /* Elle prendra au moins toute la hauteur de l'écran */
+    padding-top: 100px; /* On ajoute de l'espace en haut */
+    padding-bottom: 100px; /* Et en bas */
+}
+
 
 /* --- 5. COMPOSANTS SPÉCIFIQUES --- */
-
-/* Navigation latérale - On respecte les classes JS */
+/* (Le reste de ton CSS est bon, y compris la section projets que tu as déjà) */
 .section-navigate { position: fixed; top: 50%; right: 1.5em; transform: translateY(-50%); z-index: 1001; }
 .section-navigate__items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px; }
 .section-navigate__link { display: flex; align-items: center; gap: 10px; color: transparent; font-size: 0.9rem; transition: all 0.3s ease; }
@@ -143,327 +81,78 @@ section.slide {
 .section-navigate__link.is--active::before { background-color: var(--accent-color); transform: scale(1.5); }
 .section-navigate__name { transition: opacity 0.3s ease; }
 
+.bar-graph-container { width: 80%; max-width: 600px; margin: 2rem auto; }
+.bar-container { background-color: rgba(255, 255, 255, 0.1); border-radius: 20px; margin-bottom: 1rem; overflow: hidden; }
+.bar-container > div { height: 25px; line-height: 25px; border-radius: 20px; text-align: left; padding-left: 15px; font-weight: 500; transform: translateX(-100%); transition: transform 1.5s ease-out; }
+.bar-container > div.animate-slide { transform: translateX(0); }
+.bar-container p { color: white; margin: 0; font-size: 0.9rem; }
+.html { width: 85%; background-color: #E44D26; }
+.css { width: 80%; background-color: #264DE4; }
+.js { width: 75%; background-color: #F0DB4F; }
+.php { width: 80%; background-color: #787CB5; }
+.suite-office { width: 95%; background-color: #D83B01; }
+.mysql { width: 85%; background-color: #4479A1; }
+.python { width: 85%; background-color: #FFD43B; }
+.wordpress { width: 65%; background-color: #21759B; }
+.csharp { width: 65%; background-color: #9B4F96; }
+.git { width: 85%; background-color: #F05032; }
+.react { width: 65%; background-color: #61DAFB; }
+.js p, .python p, .react p { color: #212529; font-weight: 500; }
 
-/* --- Barres de compétences (Version Corrigée) --- */
-.bar-graph-container {
-    width: 80%;
-    max-width: 600px;
-    margin: 2rem auto;
-}
-
-.bar-container {
-    background-color: rgba(255, 255, 255, 0.1); /* "Piste" de la barre */
-    border-radius: 20px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-}
-
-.bar-container > div {
-    height: 25px;
-    line-height: 25px;
-    border-radius: 20px;
-    text-align: left;
-    padding-left: 15px;
-    font-weight: 500;
-    /* 1. On cache la barre par défaut en la déplaçant sur la gauche */
-    transform: translateX(-100%); 
-    transition: transform 1.5s ease-out; /* On peut aussi utiliser une transition simple */
-}
-
-/* 2. L'animation se déclenchera UNIQUEMENT quand la classe .animate-slide sera ajoutée par le JS */
-.bar-container > div.animate-slide {
-    transform: translateX(0); /* On ramène la barre à sa position finale */
-}
-
-.bar-container p {
-    color: white;
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-/* --- Styles de couleur pour les barres de compétences --- */
-
-/* Compétences de base */
-.html { width: 85%; background-color: #E44D26; } /* Orange HTML5 */
-.css { width: 80%; background-color: #264DE4; }  /* Bleu CSS3 */
-.js { width: 75%; background-color: #F0DB4F; }   /* Jaune JavaScript */
-.php { width: 80%; background-color: #787CB5; }  /* Violet PHP */
-
-/* Nouvelles compétences */
-.suite-office { width: 95%; background-color: #D83B01; } /* Orange Office */
-.mysql { width: 85%; background-color: #4479A1; }      /* Bleu MySQL */
-.python { width: 85%; background-color: #FFD43B; }     /* Jaune Python */
-.wordpress { width: 65%; background-color: #21759B; }  /* Bleu WordPress */
-.csharp { width: 65%; background-color: #9B4F96; }     /* Violet C# */
-.git { width: 85%; background-color: #F05032; }        /* Orange Git */
-.react { width: 65%; background-color: #61DAFB; }      /* Bleu clair React */
-
-/* IMPORTANT : Lisibilité du texte sur les fonds clairs */
-.js p,
-.python p,
-.react p {
-    color: #212529; /* Texte noir pour un meilleur contraste */
-    font-weight: 500;
-}
-
-
-/* --- Roulette (Section 2) --- */
-#cardList {
-    height: 100px;
-    max-width: 100%;
-    width: 800px;
-    position: relative;
-    border: 2px solid var(--accent-color);
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    white-space: nowrap;
-    margin: 0 auto;
-}
-.card {
-    display: inline-block;
-    width: 100px;
-    height: 96px; /* 100px - 4px de bordure */
-    text-align: center;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-.card > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.arrow-down {
-    width: 0; height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid var(--accent-color);
-    margin: 1.5rem auto;
-}
+#cardList { height: 100px; max-width: 100%; width: 800px; position: relative; border: 2px solid var(--accent-color); border-radius: 8px; background-color: rgba(0, 0, 0, 0.2); overflow: hidden; white-space: nowrap; margin: 0 auto; }
+.card { display: inline-block; width: 100px; height: 96px; text-align: center; border-left: 1px solid rgba(255, 255, 255, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); }
+.card > img { width: 100%; height: 100%; object-fit: cover; }
+.arrow-down { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 20px solid var(--accent-color); margin: 1.5rem auto; }
 #dialog-msg { text-align: center; margin-top: 1rem; }
-#dialog-msg > img {
-    width: 150px; height: 150px; border-radius: 50%;
-    border: 3px solid var(--accent-color);
-}
-#connexion button { /* Style pour le bouton "Open" */
-    background-color: var(--accent-color); color: #141619; border: none; padding: 10px 25px;
-    border-radius: 5px; font-weight: bold; cursor: pointer; transition: transform 0.2s ease;
-}
+#dialog-msg > img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent-color); }
+#connexion button { background-color: var(--accent-color); color: #141619; border: none; padding: 10px 25px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: transform 0.2s ease; }
 #connexion button:hover { transform: scale(1.05); }
 
-
-/* Styles pour la pop-up (jQuery UI Dialog) */
 .ui-dialog { z-index: 1050 !important; }
 .ui-widget-overlay { background: rgba(0, 0, 0, 0.7); }
-.btn-fermer {
-    background-color: var(--accent-color) !important;
-    border: none !important; color: white !important; font-weight: bold !important;
-    border-radius: 6px !important; cursor: pointer !important; padding: 10px 20px !important;
-    transition: background 0.3s ease !important;
-}
+.btn-fermer { background-color: var(--accent-color) !important; border: none !important; color: white !important; font-weight: bold !important; border-radius: 6px !important; cursor: pointer !important; padding: 10px 20px !important; transition: background 0.3s ease !important; }
 .btn-fermer:hover { background-color: #0077b6 !important; }
 
+#myCanvas { position: fixed; top: 0; left: 0; z-index: 9999; width: 100vw; height: 100vh; background-color: var(--dark-bg); transition: transform 0.8s ease, opacity 0.8s ease; }
+#myCanvas.hide { transform: translateY(-100%); opacity: 0; pointer-events: none; }
 
-
-
-/* Intro Canvas & Loader - On assure la compatibilité */
-#myCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--dark-bg);
-    transition: transform 0.8s ease, opacity 0.8s ease;
-}
-#myCanvas.hide {
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-}
-
+/* --- SECTION PROJETS --- */
+.projects-container { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; width: 100%; }
+.project-card { background-color: #2c2f36; border: 1px solid #40444c; border-radius: 12px; overflow: hidden; width: 350px; display: flex; flex-direction: column; text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.project-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+.projects-container .project-card .project-card-img { width: 100%; height: 200px !important; object-fit: cover; border-bottom: 1px solid #40444c; }
+.project-card-body { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+.project-card-body .card-title { font-size: 1.25rem; font-weight: bold; color: #fff; margin-bottom: 0.75rem; }
+.project-card-body .card-text { font-size: 0.9rem; color: var(--text-secondary); flex-grow: 1; margin-bottom: 1rem; }
+.tech-tags { margin-bottom: 1.5rem; }
+.tech-badge { display: inline-block; background-color: rgba(0, 163, 255, 0.15); color: var(--accent-color); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 500; margin-right: 0.5rem; margin-bottom: 0.5rem; }
+.btn-project { display: block; background-color: var(--accent-color); color: #fff; text-align: center; padding: 0.75rem; border-radius: 8px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; transition: background-color 0.3s ease; }
+.btn-project:hover { background-color: #0082cc; color: #fff; }
+.btn-project i { margin-right: 0.5rem; }
 
 /* --- 6. RESPONSIVE DESIGN --- */
-/* On cible le burger par son ID */
-#burger {
-    display: none;
-    position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    z-index: 2000;
-}
-
-#burger span {
-    width: 25px;
-    height: 3px;
-    background: white;
-    transition: all 0.3s ease;
-}
+#burger { display: none; position: fixed; top: 1.5rem; right: 1.5rem; flex-direction: column; gap: 5px; cursor: pointer; z-index: 2000; }
+#burger span { width: 25px; height: 3px; background: white; transition: all 0.3s ease; }
 #burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 #burger.active span:nth-child(2) { opacity: 0; }
 #burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-
 @media screen and (max-width: 768px) {
     h1 { font-size: 2.5rem; }
     p { font-size: 1rem; }
-
     #burger { display: flex; }
     .section-navigate { display: none; }
-    
     #main-header.affix { padding: 1rem; }
-    
-    /* On cible la nav par son ID pour le menu mobile */
-    nav#navbar {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(10, 10, 10, 0.95);
-        backdrop-filter: blur(10px);
-        justify-content: center;
-        align-items: center;
-    }
-    
+    nav#navbar { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); justify-content: center; align-items: center; }
     nav#navbar.show { display: flex; }
-    
     nav#navbar ul { flex-direction: column; text-align: center; }
-    
     nav#navbar li { margin: 15px 0; }
-    
     nav#navbar a { font-size: 1.5rem; }
-
-    /* Forcer le header à ne pas être transparent sur mobile pour la visibilité */
-    #main-header {
-      background: rgba(18, 18, 18, 0.8);
-    }
-    /* ... dans la media query @media screen and (max-width: 768px) ... */
-
-
-/* =================================================== */
-/* CORRECTION POUR LA SECTION PROJETS SUR MOBILE     */
-/* =================================================== */
-section#projets {
-    height: auto; /* On laisse la hauteur s'adapter au contenu */
-    min-height: 100vh; /* Garde un aspect "full page" mais peut grandir si besoin */
-    padding-top: 100px;  /* Ajoute de l'espace en haut pour le titre */
-    padding-bottom: 50px; /* Ajoute une marge en bas */
-}
-
-.projects-container {
-    flex-direction: column; /* Force les projets à s'empiler verticalement */
-    align-items: center; /* Centre les cartes */
-}
-
-.project-card {
-    width: 90%; /* Prend presque toute la largeur disponible */
-    max-width: 350px; /* Mais pas plus que cette taille pour un look propre */
-    transform: none; /* On annule l'effet de survol par défaut sur mobile */
-    margin-bottom: 2rem; /* Espace entre les cartes de projet */
-}
-
-.project-card:hover {
-    transform: none; /* On désactive l'animation au "survol" sur mobile */
-    box-shadow: none; /* On désactive aussi l'ombre */
-}
+    #main-header { background: rgba(18, 18, 18, 0.8); }
     
-}
-/* ... juste avant la section responsive ... */
-
-/* --- 5.5. NOUVELLE SECTION PROJETS --- */
-.projects-container {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap; /* Pour passer à la ligne sur mobile */
-    width: 100%;
-    max-width: 1200px; /* Limite la largeur max */
-}
-
-.project-card {
-    background-color: #1e1e1e; /* Un peu plus clair que le fond */
-    border: 1px solid #333;
-    border-radius: 12px;
-    overflow: hidden; /* Pour que l'image respecte les coins arrondis */
-    width: 320px;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 163, 255, 0.2);
-}
-
-.project-card-img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover; /* Assure que l'image couvre bien la zone */
-}
-
-.project-card-body {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Pour que toutes les cartes aient la même hauteur */
-}
-
-.project-card-body .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 0.75rem;
-}
-
-.project-card-body .card-text {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    flex-grow: 1; /* Pousse le bouton en bas */
-    margin-bottom: 1rem;
-}
-
-.tech-tags {
-    margin-bottom: 1.5rem;
-}
-
-.tech-badge {
-    display: inline-block;
-    background-color: rgba(0, 163, 255, 0.15); /* Fond transparent coloré */
-    color: var(--accent-color);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.btn-project {
-    display: block;
-    background-color: var(--accent-color);
-    color: #fff;
-    text-align: center;
-    padding: 0.75rem;
-    border-radius: 8px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-project:hover {
-    background-color: #0077b6; /* Une teinte plus foncée au survol */
-    color: #fff;
-}
-
-.btn-project i {
-    margin-right: 0.5rem; /* Espace entre l'icône et le texte */
+    /* On s'assure que sur mobile, la section projet peut grandir */
+    section#projets {
+        height: auto;
+        min-height: 100vh;
+    }
 }
