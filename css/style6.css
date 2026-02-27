@@ -97,7 +97,10 @@ section#projets {
 .csharp { width: 65%; background-color: #9B4F96; }
 .git { width: 85%; background-color: #F05032; }
 .react { width: 65%; background-color: #61DAFB; }
-.js p, .python p, .react p { color: #212529; font-weight: 500; }
+.vue { width: 85%; background-color: #42b883; }
+.testim { width: 80%; background-color: #6366f1; }
+.api { width: 85%; background-color: #38bdf8; }
+.js p, .vue p, .api p { color: #212529; font-weight: 500; }
 
 #cardList { height: 100px; max-width: 100%; width: 800px; position: relative; border: 2px solid var(--accent-color); border-radius: 8px; background-color: rgba(0, 0, 0, 0.2); overflow: hidden; white-space: nowrap; margin: 0 auto; }
 .card { display: inline-block; width: 100px; height: 96px; text-align: center; border-left: 1px solid rgba(255, 255, 255, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); }
