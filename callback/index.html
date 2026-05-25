@@ -2,12 +2,26 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Authentification TikTok</title>
+    <title>Ton code TikTok</title>
 </head>
-<body style="font-family: sans-serif; padding: 50px; text-align: center;">
-    <h1>Authentification en cours...</h1>
-    <p>Le code d'autorisation a été reçu.</p>
-    <p>Regarde la barre d'adresse de ton navigateur ci-dessus.</p>
-    <p>Copie toute l'URL (qui commence par https://adriendoll.fr/callback?code=...) et colle-la dans ton script Python.</p>
+<body style="font-family: sans-serif; padding: 50px; text-align: center; background-color: #f4f4f4;">
+    <h1>Ton code d'autorisation TikTok :</h1>
+    
+    <div style="background: white; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h2 id="leCode" style="color: #ff0050; word-break: break-all; margin: 0;">Recherche du code...</h2>
+    </div>
+
+    <script>
+        // Ce petit script va fouiller dans l'URL et afficher le code en gros sur l'écran
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        
+        if(code) {
+            document.getElementById('leCode').innerText = code;
+        } else {
+            document.getElementById('leCode').innerText = "Aucun code trouvé. Regarde quand même dans la barre d'adresse au cas où !";
+            document.getElementById('leCode').style.color = "orange";
+        }
+    </script>
 </body>
 </html>
