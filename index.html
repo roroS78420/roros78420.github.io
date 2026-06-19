@@ -1,44 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adrien Doll</title>
-    <!-- Favicon exigé par le modérateur -->
-    <link rel="icon" href="assets/img/test.jpg" type="image/jpeg">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body { background-color: #f8f9fa; font-family: 'Inter', sans-serif; }
-        .hero { padding: 100px 0; text-align: center; background-color: #111; color: white; }
-        .btn-social { background-color: #000; color: white; padding: 10px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; border: 1px solid white;}
-        .app-icon { width: 100px; height: 100px; border-radius: 20px; margin-bottom: 20px; }
-        .legal-links { margin-top: 50px; }
-        .legal-links a { margin: 0 15px; color: #555; text-decoration: none; font-weight: bold;}
-    </style>
+    <title>Adrien Doll - Développeur Web</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="css/style6.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
 <body>
-    <div class="hero">
-        <div class="container">
-            <!-- Icône visible dans le header -->
-            <img src="assets/img/test.jpg" alt="Adrien Doll Icon" class="app-icon">
-            <h1 class="display-4 font-weight-bold">Adrien Doll</h1>
-            <p class="lead mt-3">A scheduling and auto-publishing tool for creators to share informative and graphical content on social networks.</p>
-            <p class="mt-4">Connect your account to start automating your educational carousels and infographics.</p>
-            <a href="#features" class="btn-social mt-3">Discover Features</a>
-        </div>
+<header id="main-header">
+  <div class="container">
+    <div class="autohiro-left">
+
+
+      <h1 class="text-white">Adrien Doll</h1>
+    </div>
+    <nav class="autohiro-right" id="navbar">
+      <ul>
+        <li><a href="#roulette">Roulette</a></li>
+        <li><a href="#stats">Statistiques</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#experiences">Expériences</a></li>
+                <li><a href="#projets">Projets</a></li>
+
+      </ul>
+    </nav>
+  </div>
+</header>
+<nav class="section-navigate js--navigate">
+  <ul class="section-navigate__items js--navigate-items">
+    <li class="section-navigate__item">
+      <a href="#accueil" class="section-navigate__link js--navigate-link is--active">
+        <span class="section-navigate__name">Présentation</span>
+      </a>
+    </li>
+    <li class="section-navigate__item">
+      <a href="#roulette" class="section-navigate__link js--navigate-link">
+        <span class="section-navigate__name">Roulette</span>
+      </a>
+    </li>
+    <li class="section-navigate__item">
+      <a href="#stats" class="section-navigate__link js--navigate-link">
+        <span class="section-navigate__name">Statistiques</span>
+      </a>
+    </li>
+    <li class="section-navigate__item">
+      <a href="#competences" class="section-navigate__link js--navigate-link">
+        <span class="section-navigate__name">Compétences</span>
+      </a>
+    </li>
+    <li class="section-navigate__item">
+      <a href="#experiences" class="section-navigate__link js--navigate-link">
+        <span class="section-navigate__name">Expériences</span>
+      </a>
+    </li>
+            <li class="section-navigate__item">
+            <a href="#projets" class="section-navigate__link js--navigate-link">
+                <span class="section-navigate__name">Projets</span>
+            </a>
+        </li>
+  </ul>
+</nav>
+          <div class="burger" id="burger">  
+  <span></span>
+  <span></span>
+  <span></span>
+  </div>
+        <canvas id="myCanvas"></canvas>
+    <script src="js/canvas.js"></script>
+<script>
+</script>
+
+
+  <!-- Slide 1 : Présentation -->
+  <section class="slide slide1" id="accueil">
+    <h1 class="text-5xl font-bold mb-4">Présentation</h1>
+    <p class="max-w-2xl text-lg">
+      Diplômé d’un Master en ingénierie informatique de l'école IRIS , je justifie de 4 ans d’expérience en alternance et j’ai acquis une solide expertise en développement fullstack chez Coppelis et Liketonjob. Habitué aux environnements agiles , je maîtrise HTML, CSS, JavaScript, PHP et Python, tout en étant opérationnel sur Symfony 7 et Vue.js 3. Passionné par l’innovation, je sais également exploiter des outils comme WordPress ou MySQL pour optimiser l'UX et la performance des interfaces. Autonome et rigoureux , je possède un niveau d'anglais B2 et suis prêt à m'investir immédiatement dans vos projets techniques.
+    </p>
+  </section>
+
+  <!-- Slide 2 : Unbox -->
+  <section class="slide slide2" id="roulette">
+    <h2 class="text-4xl font-bold mb-6">Quel Adrien allez-vous recruter ?</h2>
+    <div id="unbox-wrapper" class="invisible">
+  <div id="unbox-area">
+    <div class="arrow-down"></div>
+    <div id="cardList"></div>
+  </div>
+  <button onclick="openCase();" class="mt-4 bg-white text-indigo-800 px-4 py-2 rounded">Open</button>
+  <div id="dialog" class="mt-4">
+    <div id="dialog-msg"></div>
+  </div>
+</div>
+
+  </section>
+
+  <div id="imageModal" style="display:none;">
+  <img id="modalImage" src="" style="width: 100%; height: auto;">
+</div>
+
+  <!-- Slide 3 : Statistiques -->
+  <section class="slide slide3" id="stats">
+    <h2 class="text-4xl font-bold mb-4">Mes statistiques</h2>
+    <div class="flex gap-10 mt-4">
+      <div class="stat">
+        <div id="xp-years" class="counter text-3xl font-bold">0</div>
+        <p>Années d'expérience</p>
+      </div>
+      <div class="stat">
+        <div id="projects" class="counter text-3xl font-bold">0</div>
+        <p>Projets réalisés</p>
+      </div>
+      <div class="stat">
+        <div id="certs" class="counter text-3xl font-bold">0</div>
+        <p>Certifications</p>
+      </div>
+    </div>
+  </section>
+<section class="slide slide4" id="competences">
+  <h2 class="text-4xl font-bold mb-6">Compétences</h2>
+  <div class="bar-graph-container space-y-2">
+    
+    <div class="bar-container">
+        <div class="php bg-purple-600 h-4 w-[95%] rounded"><p class="text-sm text-white">PHP (Symfony 7)</p></div>
+    </div>
+    <div class="bar-container">
+        <div class="mysql bg-blue-700 h-4 w-[90%] rounded"><p class="text-sm text-white">MySQL</p></div>
+    </div>
+
+    <div class="bar-container">
+        <div class="js bg-yellow-500 h-4 w-[90%] rounded"><p class="text-sm text-black">JavaScript (ES6+)</p></div>
+    </div>
+    <div class="bar-container">
+        <div class="vue bg-green-600 h-4 w-[85%] rounded"><p class="text-sm text-white">Vue.js 3</p></div>
+    </div>
+    <div class="bar-container">
+        <div class="html bg-red-500 h-4 w-[95%] rounded"><p class="text-sm text-white">HTML5 / CSS3 (Responsive)</p></div>
+    </div>
+
+    <div class="bar-container">
+        <div class="git bg-red-600 h-4 w-[90%] rounded"><p class="text-sm text-white">Git / GitHub</p></div>
+    </div>
+    <div class="bar-container">
+        <div class="testim bg-indigo-500 h-4 w-[80%] rounded"><p class="text-sm text-white">QA Automation (Testim.io)</p></div>
+    </div>
+    <div class="bar-container">
+        <div class="api bg-blue-400 h-4 w-[85%] rounded"><p class="text-sm text-black">API REST</p></div>
+    </div>
+    <div class="bar-container">
+        <div class="wordpress bg-gray-500 h-4 w-[75%] rounded"><p class="text-sm text-white">WordPress</p></div>
     </div>
     
-    <div class="container mt-5 text-center">
-    <div id="features" class="container mt-5 text-center">
-        <h3>Features</h3>
-        <p class="text-muted">Multi-tenant architecture • API Integration • Scheduled photo & video publishing</p>
-        <p><small>Not for personal use. Built for independent content creators.</small></p>
+  </div>
+</section>
+
+<section class="slide slide5" id="experiences">
+    <h1 class="text-5xl font-bold mb-4">Expériences</h1>
+    <div class="max-w-2xl text-lg">
+        <p class="mb-4">
+            Fort de <strong class="font-bold">4 années de pratique en entreprise</strong>, je suis un <strong class="font-bold">Ingénieur rigoureux (Master 2)</strong> spécialisé dans le cycle complet de développement web. Mon expertise s'étend de l'architecture <strong class="font-bold">Back-end (PHP/Symfony)</strong> aux interfaces <strong class="font-bold">Front-end dynamiques (Vue.js)</strong>.
+        </p>
         
-        <!-- Liens obligatoires directs (sans menu) -->
-        <div class="legal-links">
-            <a href="/privacy-policy.html">Privacy Policy</a>
-            <a href="/terms-of-service.html">Terms of Service</a>
+        <p class="mb-4">
+            Lors de mes expériences chez <strong class="font-bold">COPPELIS</strong> et <strong class="font-bold">LIKETONJOB</strong>, j'ai piloté des missions critiques : de la maintenance corrective et l'automatisation de tests (QA) à la refonte complète d'architectures vers des solutions <strong class="font-bold">API First</strong> et décentralisées.
+        </p>
+        
+        <p>
+            Aujourd'hui, je transforme des besoins complexes en solutions maintenables, avec une maîtrise pointue de l'écosystème JavaScript, de la gestion de bases de données MySQL et des rituels Agiles.
+        </p>
+    </div>
+ </section>
+
+<section class="slide slide6" id="projets">
+    <div class="container">
+        <h2 class="text-4xl font-bold mb-5" style="color: #fff;">Mes Projets</h2>
+        <div class="projects-container">
+
+            <div class="project-card">
+                <img src="https://raw.githubusercontent.com/roroS78420/ppesymfony/refs/heads/master/img/Accueil.png" alt="Migration Symfony Vue.js" class="project-card-img">
+                <div class="project-card-body">
+                    <h5 class="card-title">Refonte E-Commerce & Architecture API</h5>
+                    <p class="card-text">Migration d'un monolithe vers une architecture découplée. Développement d'une API REST sécurisée et d'un tunnel d'achat réactif.</p>
+                    <div class="tech-tags">
+                        <span class="tech-badge" style="border: 1px solid #fff;">Symfony 7</span>
+                        <span class="tech-badge" style="border: 1px solid #42b883; color:#42b883;">Vue.js 3</span>
+                        <span class="tech-badge">API REST</span>
+                    </div>
+                    <a href="https://github.com/roroS78420/ppesymfony" target="_blank" class="btn-project">
+                        <i class="bi bi-github"></i> Voir le code
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://raw.githubusercontent.com/roroS78420/auto-ecole/main/img/agenda.png" alt="Espace Membre Auto-École" class="project-card-img"> 
+                <div class="project-card-body">
+                    <h5 class="card-title">Portail Élève Auto-Ecole</h5>
+                    <p class="card-text">Interface de gestion de progression avec messagerie temps réel et calendrier de leçons interactif via FullCalendar.js.</p>
+                    <div class="tech-tags">
+                        <span class="tech-badge">PHP</span>
+                        <span class="tech-badge">MySQL</span>
+                        <span class="tech-badge">FullCalendar.js</span>
+                        <span class="tech-badge">UX/UI</span>
+                    </div>
+                    <a href="https://github.com/roroS78420/auto-ecole" target="_blank" class="btn-project">
+                        <i class="bi bi-github"></i> Voir le code
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://github.com/roroS78420/PPE/raw/main/img/Screen1.png" alt="Projet Filelec Legacy" class="project-card-img">
+                <div class="project-card-body">
+                    <h5 class="card-title">Site E-commerce "Filelec" (Legacy)</h5>
+                    <p class="card-text">Développement initial en PHP natif avec architecture MVC. Gestion complète du cycle de vie des commandes et back-office.</p>
+                    <div class="tech-tags">
+                        <span class="tech-badge">PHP Natif</span>
+                        <span class="tech-badge">MVC</span>
+                        <span class="tech-badge">MySQL</span>
+                    </div>
+                    <a href="https://github.com/roroS78420/PPE" target="_blank" class="btn-project">
+                        <i class="bi bi-github"></i> Voir le code
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+<script src="js/canvas.js"></script> <script src="js/scripts.js"></script>
 </body>
 </html>
