@@ -1,250 +1,362 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adrien Doll - Développeur Web</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link href="css/style6.css" rel="stylesheet" />
+    <title>Adrien Doll | Ingénieur & Développeur Fullstack</title>
+    
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0d1b2a;
+            --card-bg: rgba(30, 58, 138, 0.3);
+            --card-border: rgba(100, 116, 255, 0.3);
+            --text-main: #ffffff;
+            --text-muted: #cbd5e1;
+            --accent: #4deeea;
+            --accent-gradient: linear-gradient(135deg, #4deeea, #9b59b6);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 27, 42, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center; /* Alignement vertical centré */
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Bouton CV dans la navigation */
+        nav a.btn-cv {
+            color: var(--bg-dark);
+            background: var(--accent);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        nav a.btn-cv:hover {
+            color: white;
+            background: var(--accent-gradient);
+            transform: scale(1.05);
+        }
+
+        /* Sections Générales */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #ffffff, #a0a0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero / Présentation */
+        .hero-text {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-text strong {
+            color: var(--text-main);
+        }
+
+        /* Compétences (Badges) */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3));
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            color: #e0e7ff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.5), rgba(139, 92, 246, 0.5));
+        }
+
+        /* Projets (Cartes Glassmorphism) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s, border-color 0.4s;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(100, 116, 255, 0.6);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .project-body {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .project-techs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tech-mini {
+            font-size: 0.8rem;
+            color: var(--accent);
+            background: rgba(77, 238, 234, 0.1);
+            border: 1px solid rgba(77, 238, 234, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .btn-github {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, coral, #ff4da6);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-github:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(255, 77, 166, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 20px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            section { padding-top: 150px; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
 </head>
 
 <body>
-<header id="main-header">
-  <div class="container">
-    <div class="autohiro-left">
 
-
-      <h1 class="text-white">Adrien Doll</h1>
-    </div>
-    <nav class="autohiro-right" id="navbar">
-      <ul>
-        <li><a href="#roulette">Roulette</a></li>
-        <li><a href="#stats">Statistiques</a></li>
-        <li><a href="#competences">Compétences</a></li>
-        <li><a href="#experiences">Expériences</a></li>
-                <li><a href="#projets">Projets</a></li>
-
-      </ul>
+<header>
+    <a href="#" class="logo">Adrien Doll</a>
+    <nav>
+        <ul>
+            <li><a href="#accueil">Présentation</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#experiences">Expériences</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="./cv" class="btn-cv">CV</a></li>
+        </ul>
     </nav>
-  </div>
 </header>
-<nav class="section-navigate js--navigate">
-  <ul class="section-navigate__items js--navigate-items">
-    <li class="section-navigate__item">
-      <a href="#accueil" class="section-navigate__link js--navigate-link is--active">
-        <span class="section-navigate__name">Présentation</span>
-      </a>
-    </li>
-    <li class="section-navigate__item">
-      <a href="#roulette" class="section-navigate__link js--navigate-link">
-        <span class="section-navigate__name">Roulette</span>
-      </a>
-    </li>
-    <li class="section-navigate__item">
-      <a href="#stats" class="section-navigate__link js--navigate-link">
-        <span class="section-navigate__name">Statistiques</span>
-      </a>
-    </li>
-    <li class="section-navigate__item">
-      <a href="#competences" class="section-navigate__link js--navigate-link">
-        <span class="section-navigate__name">Compétences</span>
-      </a>
-    </li>
-    <li class="section-navigate__item">
-      <a href="#experiences" class="section-navigate__link js--navigate-link">
-        <span class="section-navigate__name">Expériences</span>
-      </a>
-    </li>
-            <li class="section-navigate__item">
-            <a href="#projets" class="section-navigate__link js--navigate-link">
-                <span class="section-navigate__name">Projets</span>
-            </a>
-        </li>
-  </ul>
-</nav>
-          <div class="burger" id="burger">  
-  <span></span>
-  <span></span>
-  <span></span>
-  </div>
-        <canvas id="myCanvas"></canvas>
-    <script src="js/canvas.js"></script>
-<script>
-</script>
 
-
-  <!-- Slide 1 : Présentation -->
-  <section class="slide slide1" id="accueil">
-    <h1 class="text-5xl font-bold mb-4">Présentation</h1>
-    <p class="max-w-2xl text-lg">
-      Diplômé d’un Master en ingénierie informatique de l'école IRIS , je justifie de 4 ans d’expérience en alternance et j’ai acquis une solide expertise en développement fullstack chez Coppelis et Liketonjob. Habitué aux environnements agiles , je maîtrise HTML, CSS, JavaScript, PHP et Python, tout en étant opérationnel sur Symfony 7 et Vue.js 3. Passionné par l’innovation, je sais également exploiter des outils comme WordPress ou MySQL pour optimiser l'UX et la performance des interfaces. Autonome et rigoureux , je possède un niveau d'anglais B2 et suis prêt à m'investir immédiatement dans vos projets techniques.
+<section id="accueil">
+    <h1 class="section-title">Ingénieur & Développeur Web</h1>
+    <p class="hero-text">
+        Diplômé d’un <strong>Master en ingénierie informatique (IRIS)</strong>, je justifie de <strong>4 ans d’expérience</strong> en alternance. J’ai acquis une solide expertise en développement fullstack au sein d'environnements agiles.
     </p>
-  </section>
-
-  <!-- Slide 2 : Unbox -->
-  <section class="slide slide2" id="roulette">
-    <h2 class="text-4xl font-bold mb-6">Quel Adrien allez-vous recruter ?</h2>
-    <div id="unbox-wrapper" class="invisible">
-  <div id="unbox-area">
-    <div class="arrow-down"></div>
-    <div id="cardList"></div>
-  </div>
-  <button onclick="openCase();" class="mt-4 bg-white text-indigo-800 px-4 py-2 rounded">Open</button>
-  <div id="dialog" class="mt-4">
-    <div id="dialog-msg"></div>
-  </div>
-</div>
-
-  </section>
-
-  <div id="imageModal" style="display:none;">
-  <img id="modalImage" src="" style="width: 100%; height: auto;">
-</div>
-
-  <!-- Slide 3 : Statistiques -->
-  <section class="slide slide3" id="stats">
-    <h2 class="text-4xl font-bold mb-4">Mes statistiques</h2>
-    <div class="flex gap-10 mt-4">
-      <div class="stat">
-        <div id="xp-years" class="counter text-3xl font-bold">0</div>
-        <p>Années d'expérience</p>
-      </div>
-      <div class="stat">
-        <div id="projects" class="counter text-3xl font-bold">0</div>
-        <p>Projets réalisés</p>
-      </div>
-      <div class="stat">
-        <div id="certs" class="counter text-3xl font-bold">0</div>
-        <p>Certifications</p>
-      </div>
-    </div>
-  </section>
-<section class="slide slide4" id="competences">
-  <h2 class="text-4xl font-bold mb-6">Compétences</h2>
-  <div class="bar-graph-container space-y-2">
-    
-    <div class="bar-container">
-        <div class="php bg-purple-600 h-4 w-[95%] rounded"><p class="text-sm text-white">PHP (Symfony 7)</p></div>
-    </div>
-    <div class="bar-container">
-        <div class="mysql bg-blue-700 h-4 w-[90%] rounded"><p class="text-sm text-white">MySQL</p></div>
-    </div>
-
-    <div class="bar-container">
-        <div class="js bg-yellow-500 h-4 w-[90%] rounded"><p class="text-sm text-black">JavaScript (ES6+)</p></div>
-    </div>
-    <div class="bar-container">
-        <div class="vue bg-green-600 h-4 w-[85%] rounded"><p class="text-sm text-white">Vue.js 3</p></div>
-    </div>
-    <div class="bar-container">
-        <div class="html bg-red-500 h-4 w-[95%] rounded"><p class="text-sm text-white">HTML5 / CSS3 (Responsive)</p></div>
-    </div>
-
-    <div class="bar-container">
-        <div class="git bg-red-600 h-4 w-[90%] rounded"><p class="text-sm text-white">Git / GitHub</p></div>
-    </div>
-    <div class="bar-container">
-        <div class="testim bg-indigo-500 h-4 w-[80%] rounded"><p class="text-sm text-white">QA Automation (Testim.io)</p></div>
-    </div>
-    <div class="bar-container">
-        <div class="api bg-blue-400 h-4 w-[85%] rounded"><p class="text-sm text-black">API REST</p></div>
-    </div>
-    <div class="bar-container">
-        <div class="wordpress bg-gray-500 h-4 w-[75%] rounded"><p class="text-sm text-white">WordPress</p></div>
-    </div>
-    
-  </div>
+    <p class="hero-text">
+        Autonome et rigoureux, je transforme des besoins complexes en architectures maintenables (API First, découplage) avec un focus permanent sur la qualité (QA) et la performance. Prêt à m'investir immédiatement dans vos défis techniques.
+    </p>
 </section>
 
-<section class="slide slide5" id="experiences">
-    <h1 class="text-5xl font-bold mb-4">Expériences</h1>
-    <div class="max-w-2xl text-lg">
-        <p class="mb-4">
-            Fort de <strong class="font-bold">4 années de pratique en entreprise</strong>, je suis un <strong class="font-bold">Ingénieur rigoureux (Master 2)</strong> spécialisé dans le cycle complet de développement web. Mon expertise s'étend de l'architecture <strong class="font-bold">Back-end (PHP/Symfony)</strong> aux interfaces <strong class="font-bold">Front-end dynamiques (Vue.js)</strong>.
-        </p>
-        
-        <p class="mb-4">
-            Lors de mes expériences chez <strong class="font-bold">COPPELIS</strong> et <strong class="font-bold">LIKETONJOB</strong>, j'ai piloté des missions critiques : de la maintenance corrective et l'automatisation de tests (QA) à la refonte complète d'architectures vers des solutions <strong class="font-bold">API First</strong> et décentralisées.
-        </p>
-        
-        <p>
-            Aujourd'hui, je transforme des besoins complexes en solutions maintenables, avec une maîtrise pointue de l'écosystème JavaScript, de la gestion de bases de données MySQL et des rituels Agiles.
-        </p>
+<section id="competences">
+    <h2 class="section-title">Stack Technique</h2>
+    <div class="skills-container">
+        <span class="tech-badge">PHP (Symfony 7)</span>
+        <span class="tech-badge">Vue.js 3</span>
+        <span class="tech-badge">JavaScript (ES6+)</span>
+        <span class="tech-badge">MySQL</span>
+        <span class="tech-badge">API REST</span>
+        <span class="tech-badge">Git / GitHub</span>
+        <span class="tech-badge">QA Automation (Testim.io)</span>
+        <span class="tech-badge">HTML5 / CSS3</span>
+        <span class="tech-badge">WordPress</span>
+        <span class="tech-badge">Python</span>
     </div>
- </section>
+</section>
 
-<section class="slide slide6" id="projets">
-    <div class="container">
-        <h2 class="text-4xl font-bold mb-5" style="color: #fff;">Mes Projets</h2>
-        <div class="projects-container">
+<section id="experiences">
+    <h2 class="section-title">Expériences Professionnelles</h2>
+    <p class="hero-text">
+        Lors de mes missions chez <strong>COPPELIS</strong> et <strong>LIKETONJOB</strong>, j'ai piloté des chantiers critiques : de la maintenance corrective et l'automatisation de tests à la refonte complète d'architectures monolithiques vers des solutions décentralisées.
+    </p>
+</section>
 
-            <div class="project-card">
-                <img src="https://raw.githubusercontent.com/roroS78420/ppesymfony/refs/heads/master/img/Accueil.png" alt="Migration Symfony Vue.js" class="project-card-img">
-                <div class="project-card-body">
-                    <h5 class="card-title">Refonte E-Commerce & Architecture API</h5>
-                    <p class="card-text">Migration d'un monolithe vers une architecture découplée. Développement d'une API REST sécurisée et d'un tunnel d'achat réactif.</p>
-                    <div class="tech-tags">
-                        <span class="tech-badge" style="border: 1px solid #fff;">Symfony 7</span>
-                        <span class="tech-badge" style="border: 1px solid #42b883; color:#42b883;">Vue.js 3</span>
-                        <span class="tech-badge">API REST</span>
-                    </div>
-                    <a href="https://github.com/roroS78420/ppesymfony" target="_blank" class="btn-project">
-                        <i class="bi bi-github"></i> Voir le code
-                    </a>
+<section id="projets">
+    <h2 class="section-title">Projets Récents</h2>
+    
+    <div class="projects-grid">
+        <div class="project-card">
+            <img src="https://raw.githubusercontent.com/roroS78420/ppesymfony/refs/heads/master/img/Accueil.png" alt="Symfony Vue.js" class="project-img">
+            <div class="project-body">
+                <h3 class="project-title">Refonte E-Commerce & API</h3>
+                <p class="project-desc">Migration d'un monolithe vers une architecture découplée. Développement d'une API REST sécurisée et d'un tunnel d'achat réactif.</p>
+                <div class="project-techs">
+                    <span class="tech-mini">Symfony 7</span>
+                    <span class="tech-mini">Vue.js 3</span>
+                    <span class="tech-mini">API REST</span>
                 </div>
+                <a href="https://github.com/roroS78420/ppesymfony" target="_blank" class="btn-github">
+                    <i class="bi bi-github"></i> Voir le code
+                </a>
             </div>
+        </div>
 
-            <div class="project-card">
-                <img src="https://raw.githubusercontent.com/roroS78420/auto-ecole/main/img/agenda.png" alt="Espace Membre Auto-École" class="project-card-img"> 
-                <div class="project-card-body">
-                    <h5 class="card-title">Portail Élève Auto-Ecole</h5>
-                    <p class="card-text">Interface de gestion de progression avec messagerie temps réel et calendrier de leçons interactif via FullCalendar.js.</p>
-                    <div class="tech-tags">
-                        <span class="tech-badge">PHP</span>
-                        <span class="tech-badge">MySQL</span>
-                        <span class="tech-badge">FullCalendar.js</span>
-                        <span class="tech-badge">UX/UI</span>
-                    </div>
-                    <a href="https://github.com/roroS78420/auto-ecole" target="_blank" class="btn-project">
-                        <i class="bi bi-github"></i> Voir le code
-                    </a>
+        <div class="project-card">
+            <img src="https://raw.githubusercontent.com/roroS78420/auto-ecole/main/img/agenda.png" alt="Auto-École" class="project-img">
+            <div class="project-body">
+                <h3 class="project-title">Portail Élève Auto-Ecole</h3>
+                <p class="project-desc">Interface de gestion de progression avec messagerie temps réel et calendrier de leçons interactif via FullCalendar.js.</p>
+                <div class="project-techs">
+                    <span class="tech-mini">PHP</span>
+                    <span class="tech-mini">MySQL</span>
+                    <span class="tech-mini">FullCalendar.js</span>
                 </div>
+                <a href="https://github.com/roroS78420/auto-ecole" target="_blank" class="btn-github">
+                    <i class="bi bi-github"></i> Voir le code
+                </a>
             </div>
+        </div>
 
-            <div class="project-card">
-                <img src="https://github.com/roroS78420/PPE/raw/main/img/Screen1.png" alt="Projet Filelec Legacy" class="project-card-img">
-                <div class="project-card-body">
-                    <h5 class="card-title">Site E-commerce "Filelec" (Legacy)</h5>
-                    <p class="card-text">Développement initial en PHP natif avec architecture MVC. Gestion complète du cycle de vie des commandes et back-office.</p>
-                    <div class="tech-tags">
-                        <span class="tech-badge">PHP Natif</span>
-                        <span class="tech-badge">MVC</span>
-                        <span class="tech-badge">MySQL</span>
-                    </div>
-                    <a href="https://github.com/roroS78420/PPE" target="_blank" class="btn-project">
-                        <i class="bi bi-github"></i> Voir le code
-                    </a>
+        <div class="project-card">
+            <img src="https://github.com/roroS78420/PPE/raw/main/img/Screen1.png" alt="Filelec" class="project-img">
+            <div class="project-body">
+                <h3 class="project-title">E-commerce "Filelec" (Legacy)</h3>
+                <p class="project-desc">Développement initial en PHP natif avec architecture MVC. Gestion complète du cycle de vie des commandes et back-office.</p>
+                <div class="project-techs">
+                    <span class="tech-mini">PHP Natif</span>
+                    <span class="tech-mini">MVC</span>
+                    <span class="tech-mini">MySQL</span>
                 </div>
+                <a href="https://github.com/roroS78420/PPE" target="_blank" class="btn-github">
+                    <i class="bi bi-github"></i> Voir le code
+                </a>
             </div>
-
         </div>
     </div>
 </section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-<script src="js/canvas.js"></script> <script src="js/scripts.js"></script>
+
+<footer>
+    <p>Adrien Doll &copy; 2026 - Portfolio optimisé pour l'intégration professionnelle</p>
+</footer>
+
 </body>
 </html>
